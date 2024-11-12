@@ -5,8 +5,6 @@ import { v4 } from "uuid";
 export async function POST(req: NextRequest) {
   const { token, email, password } = await req.json();
 
-  console.log(token);
-
   const validationResponse = await validateTurnstileToken({
     token,
     secretKey: process.env.TURNSTILE_SECRET_KEY!,
@@ -14,8 +12,6 @@ export async function POST(req: NextRequest) {
     idempotencyKey: v4(),
     sandbox: process.env.NODE_ENV === "development",
   });
-
-  console.log(validationResponse);
 
   if (!validationResponse.success) {
     return NextResponse.json({ message: "Invalid token" }, { status: 400 });
