@@ -9,17 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@marsidev/react-turnstile": "^0.7.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.410.0",
-    "next": "14.2.5",
+    "next": "15.0.3",
+    "next-turnstile": "^1.0.0",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",

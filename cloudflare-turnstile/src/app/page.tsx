@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Turnstile } from "@marsidev/react-turnstile";
+import { Turnstile } from "next-turnstile";
 import { useRef, useState } from "react";
 import { AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,7 @@ export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
+  const turnstileRef = useRef<string>();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -93,9 +94,22 @@ export default function LoginForm() {
           <CardFooter className="flex flex-col gap-4">
             <Turnstile
               siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              onError={() => setTurnstileStatus("error")}
-              onExpire={() => setTurnstileStatus("expired")}
-              onSuccess={() => {
+              retry="auto"
+              refreshExpired="auto"
+              sandbox={process.env.NODE_ENV === "development"}
+              onError={() => {
+                setTurnstileStatus("error");
+                setError("Security check failed. Please try again.");
+              }}
+              onExpire={() => {
+                setTurnstileStatus("expired");
+                setError("Security check expired. Please verify again.");
+              }}
+              onLoad={() => {
+                setTurnstileStatus("required");
+                setError(null);
+              }}
+              onVerify={(token) => {
                 setTurnstileStatus("success");
                 setError(null);
               }}

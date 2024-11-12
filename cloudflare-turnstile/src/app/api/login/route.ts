@@ -1,30 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-
-interface CloudflareTurnstileResponse {
-  success: boolean;
-  "error-codes": string[];
-  challenge_ts: string;
-  hostname: string;
-}
+import { validateTurnstileToken } from "next-turnstile";
+import { v4 } from "uuid";
 
 export async function POST(req: NextRequest) {
   const { token, email, password } = await req.json();
 
-  const turnstileRequest = await fetch(
-    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    {
-      method: "POST",
-      body: `secret=${encodeURIComponent(process.env.TURNSTILE_SECRET_KEY!)}&response=${encodeURIComponent(token)}`,
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-    }
-  );
+  console.log(token);
 
-  const turnstileResponse =
-    (await turnstileRequest.json()) as CloudflareTurnstileResponse;
+  const validationResponse = await validateTurnstileToken({
+    token,
+    secretKey: process.env.TURNSTILE_SECRET_KEY!,
+    // Optional: Add an idempotency key to prevent token reuse
+    idempotencyKey: v4(),
+    sandbox: process.env.NODE_ENV === "development",
+  });
 
-  if (!turnstileResponse.success) {
+  console.log(validationResponse);
+
+  if (!validationResponse.success) {
     return NextResponse.json({ message: "Invalid token" }, { status: 400 });
   }
 
