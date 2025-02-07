@@ -96,7 +96,6 @@ export default function LoginForm() {
               siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
               retry="auto"
               refreshExpired="auto"
-              sandbox={process.env.NODE_ENV === "development"}
               onError={() => {
                 setTurnstileStatus("error");
                 setError("Security check failed. Please try again.");

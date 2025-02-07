@@ -27,8 +27,8 @@ importers:
         specifier: 15.0.3
         version: 15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-turnstile:
-        specifier: ^1.0.0
-        version: 1.0.0(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.0.2
+        version: 1.0.2(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -1228,8 +1228,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  next-turnstile@1.0.0:
-    resolution: {integrity: sha512-cc7R68yE14LC9Ajyy6+dQrkVDBjYZhE81UC142IqVNs5kflkkLYZAnLKJff2pBJnrkveTqP9h9uIs8AeqjCvZA==}
+  next-turnstile@1.0.2:
+    resolution: {integrity: sha512-PdCDkMQgJLGeTJpBz/cmmsKcysI0z+eN8uYab/8HuxWQ3i3NbhAfufE/Gw3ubXEd/xDezve/eVp+QBX3T7shOQ==}
     peerDependencies:
       next: '>=12'
       react: '>=16'
@@ -3064,7 +3064,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-turnstile@1.0.0(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  next-turnstile@1.0.2(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       next: 15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
